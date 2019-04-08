@@ -566,24 +566,24 @@
 				format: 'yyyy-MM-dd HH:mm',      // default format 'yyyy-MM-dd hh:mm:ss:l tt z'
 				units: {
 					year: { 
-							format: 'yyyy',      // how should hour be forrmated in drowdown
+							format: 'yyyy',      // how should hour be formatted in dropdown
 							label: 'Year'        // year label
 						},
 					month: { 
-							format: 'MMM',       // how should hour be forrmated in drowdown
+							format: 'MMM',       // how should hour be formatted in dropdown
 							label: 'Month',      // month label
 							names: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"], 
 							namesAbbr: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 						},
 					day: { 
-							format: 'd',         // how should hour be forrmated in drowdown 
+							format: 'd',         // how should hour be formatted in dropdown 
 							label: 'Day',        // day label
 							names: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
 							namesAbbr: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
 							namesHead: ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"]
 						},
 					hour: {  
-							format: 'HH',        // how should hour be forrmated in drowdown
+							format: 'HH',        // how should hour be formatted in dropdown
 							label: 'Hour',       // hour label
 							am: ['AM', 'A'],     // possible am names
 							pm: ['PM', 'P']     // possible pm names
