@@ -122,8 +122,30 @@
 						setTimeout(function(){ inst._inputChange(e); },0); // paste event needs a split second..
 					});
 
-					inst.$el.on('focus.intimidatetime', function(e){ inst.open(); });
+					// Based on http://jsfiddle.net/uYsW7/12/
+					var timeoutID;
+					// if there is a timeout set, abort closing the dialog 
+					inst.$el.on('focus.intimidatetime', function(e){ 
+					    if (timeoutID) {
+					        clearTimeout(timeoutID);
+					        timeoutID = null;
+					    }
+						inst.open();
+					});
 
+					// assume that we are leaving the dialog and close it,
+					// but wait a moment first in case we are actually just
+					// tabbing to the next field
+					inst.$el.on('blur.intimidatetime', function(e){ 
+						console.log("BLUR");
+					    timeoutID = setTimeout(function () {
+					    	var curFocus = $(":focus");
+					    	if (!$.contains(inst.$p[0],curFocus[0])) {
+					            inst.close();					    		
+					    	}
+					    }, 1);
+					});
+					
 					inst.$d.on('click.intimidatetime', function(e){
 						var target = e.target;
 						if(inst.$el[0] !== target && inst.$p[0] !== target && inst.$p.has(target).length === 0){
@@ -308,6 +330,27 @@
 					inst._reposition();
 				}
 
+				
+				// Based on http://jsfiddle.net/uYsW7/12/
+				var timeoutID;
+				// if there is a timeout set, abort closing the dialog 
+				inst.$p.find("select").focus(function (e ) {
+				    if (timeoutID) {
+				        clearTimeout(timeoutID);
+				        timeoutID = null;
+				    }
+				});
+				
+				// assume that we are leaving the dialog and close it,
+				// but wait a moment first in case we are actually just
+				// tabbing to the next field
+				inst.$p.find("select").blur(function (e) {
+				    timeoutID = setTimeout(function () {
+			            inst.close();
+				    }, 1);
+				});
+
+				
 				inst.$el.trigger('intimidatetime:refresh', [inst]);
 				return inst.$el;
 			},
